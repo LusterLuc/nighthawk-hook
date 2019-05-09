@@ -1,6 +1,6 @@
     // ==UserScript==
 // @name         Nighthawk-Hook @ Krunker.io
-// @version      1.0.1
+// @version      1.0.2
 // @description  Be better.
 // @author       Richard
 // @namespace    Richard
