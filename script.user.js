@@ -1,20 +1,23 @@
-// ==UserScript==
-// @name         Nighthawk-Hook
-// @version      1.3.3.7
-// @description  Aimbot, Unlimited Ammo, ESP...
-// @author       Richard - Forked from MrCoderN
+    // ==UserScript==
+// @name         Nighthawk-Hook @ Krunker.io
+// @version      1.0.0
+// @description  Be better.
+// @author       MR.Coder
+// @namespace MR.Coder
 // @updateURL    https://github.com/richardletshacks/nighthawk-hook/raw/master/script.user.js
 // @downloadURL  https://github.com/richardletshacks/nighthawk-hook/raw/master/script.user.js
 // @match        *://krunker.io/*
-// @require      http://code.jquery.com/jquery-3.3.1.min.js
-// @require      https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
-// @require      https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// @grant        GM_xmlhttpRequest
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
 // @run-at       document-start
 // ==/UserScript==
 
 if (window.location.href.includes("krunker")) {
 
- var checkgameloaded;
+  var checkgameloaded;
 unsafeWindow.checkgame=false;
   window.WebSocket.prototype.oldSend = WebSocket.prototype.send;
   window.WebSocket.prototype.send = function(m){
@@ -32,6 +35,9 @@ window.chatmessage = window.Ze = (t, e, i) => {
     window.socket = socket;
     checkgameloaded = socket;
 
+    window.chatmessage("Nighthawk", 'Welcome to the cheat! All modules are located on your right, directly beneath the leaderboard.');
+    $("#healthHolder").append('<a style=\"color:green;top:1520px;\">hooked$</a>');
+  }
 var OnOffMode;
 (function (OnOffMode) {
     OnOffMode["On"] = "<span style=\"color:green;\">ON</span>";
@@ -505,7 +511,8 @@ class Logger {
         <body>
           <div class="container">
             <div class="title">Cheat crashed!</div>
-            <div class="message">Error message: ${message} \nPlease report bugs at my Discord: richard#1337</div>
+            <div class="message">Error message: ${message}</div>
+            <div class="message">Please report bugs on Discord: richard#1337</div>
           </div>
         </body>
       </html>
@@ -647,9 +654,25 @@ async function inlineRemoteScript(html, partialSrc) {
     document.close();
     logger.log('Successfully loaded Cheats!');
 
-    if (document.all||document.getElementById){
-        document.title='Nighthawk @ Krunker'
-    }
+    let char_list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const chars = ['$','%','#','@','&','(',')','=','*','/'];
+    const charsTotal = chars.length;
+    const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    let title = 'nighthawk-hook $';
+    let i = 0;
+    setInterval(() => {
+	// document.title = chars[getRandomInt(0, charsTotal - 1)];
+	// document.title = title.substring(0, i + 1);
+	document.title = title.substring(0, i + 1);
+	// document.title = chars[getRandomInt(0, charsTotal - 1)];
+	if (i == 0) {
+		direction = 1;
+	} else if (i == title.length) {
+		direction = -1;
+	}
+	i += direction;
+    }, 300);
 
 })();
 }
