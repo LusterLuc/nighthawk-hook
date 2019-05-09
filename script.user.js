@@ -36,7 +36,7 @@ window.chatmessage = window.Ze = (t, e, i) => {
     checkgameloaded = socket;
 
     window.chatmessage("Nighthawk", 'Welcome to the cheat! All modules are located on your right, directly beneath the leaderboard.');
-    $("#healthHolder").append('<a style=\"color:green;top:1520px;\">hooked$</a>');
+    $("#healthHolder").append('<a style=\"color:green;top:1520px;\"> v1.0.2</a>');
   }
 var OnOffMode;
 (function (OnOffMode) {
