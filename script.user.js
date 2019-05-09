@@ -1,9 +1,9 @@
     // ==UserScript==
 // @name         Nighthawk-Hook @ Krunker.io
-// @version      1.0.0
+// @version      1.0.1
 // @description  Be better.
-// @author       MR.Coder
-// @namespace MR.Coder
+// @author       Richard
+// @namespace    Richard
 // @updateURL    https://github.com/richardletshacks/nighthawk-hook/raw/master/script.user.js
 // @downloadURL  https://github.com/richardletshacks/nighthawk-hook/raw/master/script.user.js
 // @match        *://krunker.io/*
@@ -18,7 +18,7 @@
 if (window.location.href.includes("krunker")) {
 
   var checkgameloaded;
-unsafeWindow.checkgame=false;
+  unsafeWindow.checkgame=false;
   window.WebSocket.prototype.oldSend = WebSocket.prototype.send;
   window.WebSocket.prototype.send = function(m){
         if (!checkgameloaded){
@@ -135,7 +135,7 @@ class Aimbot extends Module {
             }
         }
         if (!isLockedOn) {
-            this.control.zqrU(null);
+            this.control.camLookAt(null);
             this.control.target = null;
             if (this.getCurrentMode() === AimbotMode.Quickscoper) {
                 this.control.mouseDownL = 0;
@@ -201,10 +201,10 @@ class Aimbot extends Module {
         return true;
     }
     lookAt(target) {
-        this.control.zqrU(target.x2, target.y2 + target.height - 1.5 - 2.5 * target.crouchVal - this.me.recoilAnimY * 0.3 * 25, target.z2);
+        this.control.camLookAt(target.x2, target.y2 + target.height - 1.5 - 2.5 * target.crouchVal - this.me.recoilAnimY * 0.3 * 25, target.z2);
     }
     aimAt(target) {
-        this.control.zqrU(target.x2, target.y2 + target.height - 1.5 - 2.5 * target.crouchVal - this.me.recoilAnimY * 0.3 * 25, target.z2);
+        this.control.camLookAt(target.x2, target.y2 + target.height - 1.5 - 2.5 * target.crouchVal - this.me.recoilAnimY * 0.3 * 25, target.z2);
     }
     distance(player1, player2) {
         const dx = player1.x - player2.x;
@@ -549,7 +549,7 @@ function patchOnKeyPressed(script) {
     });
 }
 function patchForAimbot(script) {
-    return applyPatch(script, 'patchForAimbot', /{if\(this\.target\){(.+)}},this.zqrU=/, ($0, $1) => {
+      return applyPatch(script, 'patchForAimbot', /{if\(this\.target\){(.+)}},this.camLookAt=/, ($0, $1) => {
         return `
       {
         if (this.target) {
@@ -564,7 +564,7 @@ function patchForAimbot(script) {
 
           ${$1}
         }
-      }, this.zqrU =
+      }, this.camLookAt =
     `;
     });
 }
@@ -585,7 +585,7 @@ function patchLastHack(script) {
     return applyPatch(script, 'patchIsHacker', /&&([a-zA-Z0-9]+)\.lastHack&&/, `&& 1 === 0 &&`);
 }
 function patchServerSearch(script) {
-    return applyPatch(script, 'patchServerSearch', /([a-zA-Z0-9]+)\.data\.([a-zA-Z0-9]+)\.toLowerCase/, ($0, $1, $2) => {
+    return applyPatch(script, 'patchServerSearch', /([a-zA-Z0-9]+)\.data\.([a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+)\.toLowerCase/, ($0, $1, $2) => {
         return `(${$1}.data.${$2} || '').toLowerCase`;
     });
 }
