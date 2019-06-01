@@ -7,7 +7,7 @@
 // @downloadURL  https://github.com/richardletshacks/nighthawk-hook/raw/master/script.user.js
 // @include      /^(https?:\/\/)?(www\.)?(.+)krunker\.io(|\/|\/\?(game|server|party)=.+)$/
 // @grant        GM_xmlhttpRequest
-// @namespace    nighthawk
+// @namespace    nh
 // @require http://code.jquery.com/jquery-3.3.1.min.js
 // @run-at       document-start
 // ==/UserScript==
@@ -34,7 +34,7 @@ GM_xmlhttpRequest({
                 let zip = res.responseText;
                 zip = zip.replace(/document\..+<\/div>"\)/, '');
                 html = html.replace(/<script src="libs\/zip\.js.+"><\/script>/, `<script>${zip}</script>`);
-                html += '<script src="https://raw.githubusercontent.com/richardletshacks/nighthawk-hook/master/patcher.js"></script>';
+                html += '<script src="https://raw.githubusercontent.com/richardletshacks/nighthawk-hook/master/bypass.js"></script>';
                 html += '<script src="https://raw.githubusercontent.com/richardletshacks/nighthawk-hook/master/cheat.js"></script>';
                 html += '<script src="https://raw.githubusercontent.com/richardletshacks/nighthawk-hook/master/game.js"></script>';
 
